@@ -1,11 +1,11 @@
-import HomeIcon from '@/app/icons/home'
+import Button from '@/components/atoms/button'
 
 export default function Home() {
   return (
       <main>
-        <button>
-            <HomeIcon color={"#000000"} />
-        </button>
+          <Button color={"primary"} variant={"solid"}>test</Button>
+          <Button color={"secondary"} variant={"solid"}>test</Button>
+          <Button color={"tertiary"} variant={"solid"}>test</Button>
       </main>
   );
 }
