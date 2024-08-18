@@ -1,5 +1,11 @@
+import HomeIcon from '@/app/icons/home'
+
 export default function Home() {
   return (
-      <h1>{'Hoş geldiniz!'}</h1>
+      <main>
+        <button>
+            <HomeIcon color={"#000000"} />
+        </button>
+      </main>
   );
 }
