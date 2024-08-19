@@ -1,4 +1,4 @@
-import "./styles/styles.scss";
+import "@/styles/styles.scss";
 import type { Metadata } from "next";
 
 import Header from '@/components/templates/header'

@@ -1,8 +1,15 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export type ButtonProps = {
-    color?: "primary" | "secondary" | "tertiary";
-    variant?: "solid" | "border";
     className?: string;
     children?: ReactNode;
+    noHover?: boolean;
+    color?: 'primary' | 'secondary' | 'tertiary';
+    variant?: 'solid' | 'border';
+    size?: 'small' | 'large';
+    icon?: {
+        name: 'search';
+        position?: 'center' | 'left' | 'right';
+        color?: string;
+    };
 }

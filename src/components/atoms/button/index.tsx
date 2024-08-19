@@ -1,16 +1,49 @@
-import clsx from 'clsx'
-import type { ButtonProps } from './type'
+"use client";
 
-export default function Button({ color, variant, children, className = '' }: ButtonProps) {
-    const classes = clsx(className, {
-        "primary-solid": color === "primary" && variant === "solid",
-        "secondary-solid": color === "secondary" && variant === "solid",
-        "tertiary-solid": color === "tertiary" && variant === "solid",
+import { Suspense, lazy } from 'react';
+import clsx from 'clsx';
+import type { ButtonProps } from './type';
+import { Loader } from '@/components/atoms'
+
+const loadIcon = (iconName: string) => {
+    if (iconName) {
+        return lazy(() => import((`@/icons/${iconName}`)));
+    }
+};
+
+function Icon({ iconName }: { iconName?: string }) {
+    if (!iconName) {
+        return;
+    }
+
+    const IconComponent = loadIcon(iconName);
+
+    if (!IconComponent) {
+        return;
+    }
+
+    return (
+        <Suspense fallback={<Loader />}>
+            <IconComponent />
+        </Suspense>
+    );
+}
+
+export default function Button({ color, variant, children, size, className = '', icon, noHover = false }: ButtonProps) {
+    const classes = clsx(className, size, {
+        'primary-solid': color === 'primary' && variant === 'solid',
+        'secondary-solid': color === 'secondary' && variant === 'solid',
+        'tertiary-solid': color === 'tertiary' && variant === 'solid',
+        'icon-left': icon?.position === 'left',
+        'icon-right': icon?.position === 'right',
+        'icon-center': !icon?.position || icon?.position === 'center',
+        'no-hover': noHover
     });
 
     return (
         <button className={classes}>
-            {children}
+            <Icon iconName={icon?.name} />
+            {children && <span>{children}</span>}
         </button>
-    )
+    );
 }

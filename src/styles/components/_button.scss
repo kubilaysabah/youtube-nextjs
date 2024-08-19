@@ -1,0 +1,127 @@
+@use "sass:map";
+
+button {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid;
+  transition: 0.2s;
+
+  &:not(.icon-center) {
+    justify-content: space-between;
+  }
+
+  &.icon-center {
+    justify-content: center;
+  }
+
+  &:not(.icon-right) {
+    svg + * {
+      margin-left: 1rem;
+    }
+  }
+
+  &.icon-right {
+    flex-direction: row-reverse;
+
+    svg + * {
+      margin-right: 1rem;
+    }
+  }
+
+  &.small {
+    padding: 1rem 2.4rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  &.large {
+    padding: 1.6rem 2.4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &.primary-solid {
+    border-color: map.get($primary-solid, "background");
+    background-color: map.get($primary-solid, "background");
+    color: map.get($primary-solid, "text");
+    border-radius: 1rem;
+
+    svg {
+      stroke: map.get($primary-solid, "text");
+    }
+
+    &:not(.no-hover):hover {
+      border-color: map.get($primary-solid, "hover");
+      background-color: map.get($primary-solid, "hover");
+      color: map.get($primary-solid, "text");
+
+      svg {
+        stroke: map.get($primary-solid, "text");
+      }
+    }
+  }
+
+  &.secondary-solid {
+    border-color: map.get($secondary-solid, "background");
+    background-color: map.get($secondary-solid, "background");
+    color: map.get($secondary-solid, "text");
+    border-radius: 1rem;
+
+    svg {
+      stroke: map.get($secondary-solid, "text");
+    }
+
+    &:not(.no-hover):hover {
+      border-color: map.get($secondary-solid, "hover");
+      background-color: map.get($secondary-solid, "hover");
+      color: map.get($secondary-solid, "text");
+
+      svg {
+        stroke: map.get($secondary-solid, "text");
+      }
+    }
+  }
+
+  &.tertiary-solid {
+    border-color: map.get($tertiary-dark-solid, "border");
+    background-color: map.get($tertiary-dark-solid, "background");
+    color: map.get($tertiary-dark-solid, "text");
+    border-radius: 1rem;
+
+    svg {
+      stroke: map.get($tertiary-dark-solid, "text");
+    }
+
+    &:not(.no-hover):hover {
+      border-color: map.get($tertiary-dark-solid, "hover");
+      background-color: map.get($tertiary-dark-solid, "hover");
+      color: map.get($tertiary-dark-solid, "hover-text");
+
+      svg {
+        stroke: map.get($tertiary-dark-solid, "hover-text");
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      border-color: map.get($tertiary-light-solid, "border");
+      background-color: map.get($tertiary-light-solid, "background");
+      color: map.get($tertiary-light-solid, "text");
+      border-radius: 1rem;
+
+      &:not(.no-hover):hover {
+        border-color: map.get($tertiary-light-solid, "hover");
+        background-color: map.get($tertiary-light-solid, "hover");
+        color: map.get($tertiary-light-solid, "hover-text");
+
+        svg {
+          stroke: map.get($tertiary-light-solid, "hover-text");
+        }
+      }
+    }
+  }
+}
