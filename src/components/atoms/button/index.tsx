@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useMemo } from 'react';
 import clsx from 'clsx';
 import type { ButtonProps } from './type';
 import { Loader } from '@/components/atoms'
@@ -30,15 +30,17 @@ function Icon({ iconName }: { iconName?: string }) {
 }
 
 export default function Button({ color, variant, children, size, className = '', icon, noHover = false }: ButtonProps) {
-    const classes = clsx(className, size, {
-        'primary-solid': color === 'primary' && variant === 'solid',
-        'secondary-solid': color === 'secondary' && variant === 'solid',
-        'tertiary-solid': color === 'tertiary' && variant === 'solid',
-        'icon-left': icon?.position === 'left',
-        'icon-right': icon?.position === 'right',
-        'icon-center': !icon?.position || icon?.position === 'center',
-        'no-hover': noHover
-    });
+    const classes: string = useMemo((): string => {
+        return clsx(className, size, {
+            'primary-solid': color === 'primary' && variant === 'solid',
+            'secondary-solid': color === 'secondary' && variant === 'solid',
+            'tertiary-solid': color === 'tertiary' && variant === 'solid',
+            'icon-left': icon?.position === 'left',
+            'icon-right': icon?.position === 'right',
+            'icon-center': !icon?.position || icon?.position === 'center',
+            'no-hover': noHover
+        })
+    }, [className, color, variant, size, noHover, icon]);
 
     return (
         <button className={classes}>
